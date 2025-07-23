@@ -1,0 +1,20 @@
+# ใช้ base image Node เวอร์ชัน 22 แบบ Alpine (ขนาดเล็ก เร็ว)
+FROM node:22-alpine
+
+# กำหนด working directory ภายใน container
+WORKDIR /app
+
+# คัดลอกไฟล์ package.json และ package-lock.json (ถ้ามี)
+COPY package*.json ./
+
+# ติดตั้ง nodemon แบบ global และ dependency ทั่วไป
+RUN npm install -g nodemon && npm install
+
+# คัดลอกไฟล์ทั้งหมดจากโฟลเดอร์ build context (เช่น server/) ไปยัง /app
+COPY . .
+
+# เปิดพอร์ต 3000 (ให้ container รับการเชื่อมต่อภายนอก)
+EXPOSE 3000
+
+# สั่งรัน npm script ที่ชื่อว่า dev (เช่น nodemon index.js)
+CMD [ "npm", "run", "dev" ]
