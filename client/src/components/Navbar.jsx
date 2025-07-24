@@ -6,7 +6,7 @@ const Navbar = () => {
   const menuItems = [
     { name: "Add Restaurant", url: "/add" },
     { name: "Update", url: "/update/:id" },
-    { name: "About Us", url: "/update" },
+    { name: "About Us", url: "/update" }
   ];
   return (
     <div className="navbar bg-base-100 shadow-sm">
@@ -60,8 +60,8 @@ const Navbar = () => {
       </div>
       {/* Navbar ขวา (ปุ่ม Register/Login) */}
       <div className="navbar-end space-x-2.5">
-        <button className="btn btn-soft btn-primary">Register</button>
-        <button className="btn btn-soft btn-accent">Login</button>
+        <a href="/signup"><button className="btn btn-soft btn-primary">Register</button></a>
+        <a href="/signin"><button className="btn btn-soft btn-accent">Login</button></a>
       </div>
     </div>
   );
